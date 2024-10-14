@@ -1,0 +1,95 @@
+body{
+  padding: 0px;
+  background-color: #1b1a24;
+  color:white;
+  overflow-x: hidden;
+}
+
+
+.heads{
+  width: 100vw;
+  position: fixed;
+  top: 0px;
+  text-align: center;
+  background-color: #21212147; /* Dark background color */
+  backdrop-filter: blur(1px); /* Apply blur effect */
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+}
+
+.App {
+  background-color: #282c3400;
+  height: 100vh;
+  margin: 0px;
+}
+
+ul{
+  padding: 0px;
+}
+
+.Author{
+  font-size: small;
+  margin-bottom: 0px;
+  margin-top: 20px;
+  color: #ffffffb0;
+}
+
+p{
+  margin: 0px;
+}
+.Content{
+margin-top: 0px;
+}
+
+.context{
+ margin: 10px;
+   margin-bottom:0px;
+}
+button{
+margin:7px;
+margin-top:10px;
+background-color: #1b1a2400;
+border: none;
+color: #ffffff4d;
+border: 2px solid #ffffff4d;
+border-radius: 7px;
+padding: 5px;
+}
+
+
+
+
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
