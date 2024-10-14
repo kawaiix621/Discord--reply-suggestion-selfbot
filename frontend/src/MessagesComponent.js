@@ -42,7 +42,7 @@ const MessagesComponent = () => {
              className='heads'
             >
                 <h1>
-                    Kawaii 🍜
+                    😿Kawaii🍜
                 </h1>
 
             </div>
