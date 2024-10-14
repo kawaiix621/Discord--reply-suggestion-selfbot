@@ -11,7 +11,7 @@ body{
   position: fixed;
   top: 0px;
   text-align: center;
-  background-color: #21212147; /* Dark background color */
+  background-color: #1b1a2447; /* Dark background color */
   backdrop-filter: blur(1px); /* Apply blur effect */
   -webkit-backdrop-filter: blur(10px); /* For Safari */
 }
@@ -95,4 +95,54 @@ padding: 5px;
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #76767638; /* Dark background color */
+  backdrop-filter: blur(10px); /* Apply blur effect */
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.222);
+  z-index: 1000;
+  width: 50vw;
+  height: 50px;
+  display: flex;
+  justify-items: center;
+}
+
+input{
+  background-color: #5b5b5b5f; 
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 10px;
+  border-radius: 50px;
+  height: 30px;
+  width: 40vw;
+  font-size: larger;
+
+}
+
+.send{
+  background-color: #ffca0c;
+  color:rgb(0, 98, 179);
+  font-size: medium;
+  border:none;
+}
+
+.cancel{
+  background-color: #e30c0c74;
+  backdrop-filter: blur(1px); /* Apply blur effect */
+  color: rgb(255, 234, 0);
+  border-radius: 10px;
+  padding: 8px 15px;
+  border: none;
+  font-size: large;
+  font-weight: bold;
+
+
 }

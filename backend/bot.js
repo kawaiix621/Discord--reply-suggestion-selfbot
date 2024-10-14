@@ -1,5 +1,5 @@
 const { Client } = require('discord.js-selfbot-v13');
-const { writeToFirebase } = require('./firebase'); // Import Firebase functions
+const { writeToFirebase, deleteFromFirebase, readFromFirebase } = require('./firebase'); // Import Firebase functions
 
 // Import the Google Generative AI SDK
 const {
@@ -82,10 +82,54 @@ async function generateSuggestions(messageContent) {
   }
 }
 
+// Function to process approved messages, send them, and delete after successful delivery
+async function processApprovedMessages() {
+  try {
+    // Read all messages from the `approved_messages` directory
+    const approvedMessages = await readFromFirebase('approved_messages/');
+    
+    // Loop through each message
+    for (const [messageId, messageData] of Object.entries(approvedMessages)) {
+      const { author, response } = messageData;
+
+      // Construct the message to send (mention the user and send the response)
+      const messageToSend = `@${author} ${response}`;
+
+      try {
+        // Find the user in the guild and send them the message
+        const user = await client.users.fetch(messageId); // Assuming messageId matches Discord userId
+        await user.send(messageToSend);
+
+        // If the message was successfully sent, delete it from Firebase
+        await deleteFromFirebase(`approved_messages/${messageId}`);
+        console.log(`Message sent to ${author} and deleted from approved_messages.`);
+
+      } catch (error) {
+        console.error(`Failed to send message to ${author}:`, error);
+      }
+
+      // Wait 15 seconds before processing the next message
+      await sleep(15000);
+    }
+  } catch (error) {
+    console.error('Error processing approved messages:', error);
+  }
+}
+
+// Utility function for sleep/delay
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// Event listener when bot is ready
 client.on('ready', async () => {
   console.log(`${client.user.username} is ready!`);
+  
+  // Start processing approved messages
+  processApprovedMessages();
 });
 
+// Event listener for when a message is created
 client.on("messageCreate", async (message) => {
   try {
     if (message.content === 'ping') {
@@ -111,7 +155,7 @@ client.on("messageCreate", async (message) => {
     };
 
     // Log the processed message data
-    console.log('Processed Message Data:', suggestions);
+    console.log('Processed Message Data:', processedMessageData);
 
     // Save processed message with suggestions to `processed_messages/`
     await writeToFirebase(`processed_messages/${message.id}`, processedMessageData);
@@ -121,4 +165,4 @@ client.on("messageCreate", async (message) => {
   }
 });
 
-client.login('NTQ0MTUwNDc3NTU4OTA2ODgy.GXk6bE.edvmMvoqMNEOtnMSEHyMs4UwnRjbXvr-C9G68I');
+client.login('OTM0Mjk4NDg3NjA3MTQ4NTQ3.GcZZOU.YPeVJDy9wXdAha7J0q8dKzMfFbJ2IDsYxXpfXM');
