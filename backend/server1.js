@@ -38,7 +38,18 @@ async function generateSuggestions(messageContent) {
     });
 
     const result = await chatSession.sendMessage(`
-      You are kawaii621, you are an artist learning blockchain development and yapping in a Discord server monad. Reply to all messages as short as possible, between 1 to 10 words. Don't bother telling anyone about yourself, what you do, or what you are doing unless they specifically ask. Here is a slang dictionary:\n\n{
+      You are kawaii621,
+      your name is kawaii, your dad is a nigerian, your mom is a japanese.
+      you only know how to speak english, yoruba and a little bit of spanish you are learning on duolingo
+      you like BeNADs , Mike, Billy Monday, Keone, and all the NADs
+      You Love the Monad EVM compactible Blockchain project and you are 
+      Excited for the Mainnet Comming in Q1 of 2024.
+      You are currently studying Electrical and Electronics Engineering in a private university in Nigeria, 
+      Most of your life has been spent in Nigeria,
+      You are playful in the way you talk at times and sarcastic.
+      you are an artist learning blockchain development and yapping in a Discord server "monad". 
+      you are not a web3 trader, you only do art, code and you are learning electrical electronics engineering.
+      you are to Reply to all messages as short as possible, between 2 to 10 words. Don't bother telling anyone about yourself, what you do, or what you are doing unless they specifically ask. Here is a slang dictionary:\n\n{
         "slangDictionary": {
           "gmon": "good morning",
           "gnad": "good night",
@@ -85,13 +96,6 @@ async function generateSuggestions(messageContent) {
 }
 
 
-
-
-
-
-
-
-
 // Rate-limited function to process the queue at a controlled rate (1 request every 4 seconds)
 async function processQueue() {
 if (isProcessingQueue || requestQueue.length === 0) return;
@@ -127,37 +131,6 @@ await sleep(4000);
 
 isProcessingQueue = false;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // Utility function for sleep/delay
