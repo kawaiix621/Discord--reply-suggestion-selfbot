@@ -35,7 +35,7 @@ async function processApprovedMessages() {
       const { author, response } = messageData;
 
       // Construct the message to send (mention the user and send the response)
-      const messageToSend = `@${author} ${response}`;
+      const messageToSend = `${response} ${author}`;
 
       try {
         // Send a message to the specified channel
