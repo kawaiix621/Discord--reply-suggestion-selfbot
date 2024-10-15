@@ -123,26 +123,32 @@ input{
   border-radius: 50px;
   height: 30px;
   width: 40vw;
-  font-size: larger;
-
 }
 
 .send{
-  background-color: #ffca0c;
-  color:rgb(0, 98, 179);
-  font-size: medium;
+  background-color: #ffffff;
+  color:rgb(0, 0, 0);
+  font-size: large;
   border:none;
+  border-radius: 10px;
 }
 
 .cancel{
-  background-color: #e30c0c74;
+  background-color: #e30c0c00;
   backdrop-filter: blur(1px); /* Apply blur effect */
-  color: rgb(255, 234, 0);
+  color: rgb(255, 255, 255);
   border-radius: 10px;
   padding: 8px 15px;
-  border: none;
-  font-size: large;
+  border: 3px solid #ff0000a3;
+  font-size: medium;
   font-weight: bold;
+}
 
-
+.delete{
+    background-color: #e30c0c00;
+  backdrop-filter: blur(1px); /* Apply blur effect */
+  color: rgb(255, 255, 255);
+  border-radius: 10px;
+  padding: 8px 15px;
+  border: 2px solid #ff9900a3;
 }

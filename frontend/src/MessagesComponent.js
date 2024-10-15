@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'; 
 import { database, ref, onValue, set, remove } from './firebaseConfig';
 
 const MessagesComponent = () => {
     const [messages, setMessages] = useState([]);
+    const [sentMessagesCount, setSentMessagesCount] = useState(0); // State for sent messages count
     const [editingMessage, setEditingMessage] = useState(null); // Track message being edited
     const [editedResponse, setEditedResponse] = useState(''); // Track the input value
 
@@ -15,6 +16,14 @@ const MessagesComponent = () => {
                 ? Object.entries(data).map(([id, value]) => ({ id, ...value }))
                 : [];
             setMessages(messagesList);
+        });
+        
+        // Load count of sent messages from `sent_messages/`
+        const sentMessagesRef = ref(database, 'sent_messages');
+        onValue(sentMessagesRef, (snapshot) => {
+            const sentData = snapshot.val();
+            const sentMessagesList = sentData ? Object.entries(sentData).length : 0; // Count the sent messages
+            setSentMessagesCount(sentMessagesList); // Set the count in state
         });
     }, []);
 
@@ -64,7 +73,8 @@ const MessagesComponent = () => {
     return (
         <div>
             <div className="heads">
-                <h1>😿Discord:5K🍜</h1>
+                {/* Display the count of sent messages */}
+                <h3>😿Discord: {sentMessagesCount} messages🍜</h3>
             </div>
             <ul>
                 {messages.map((message) => (
@@ -81,7 +91,7 @@ const MessagesComponent = () => {
                                 {message.suggestion_2}
                             </button>
                             <button onClick={() => handleEdit(message)}>Edit</button>
-                            <button onClick={() => handleDelete(message.id)}>Delete</button>
+                            <button className='delete' onClick={() => handleDelete(message.id)}>Delete</button>
                         </div>
                     </div>
                 ))}
@@ -96,18 +106,11 @@ const MessagesComponent = () => {
                         onChange={(e) => setEditedResponse(e.target.value)}
                         placeholder="Type your response..."
                     />
-                    <div
-                    
-                    style={{
-                        textAlign:'right'
-                    }}>
-     <button className='send' onClick={handleSendEditedResponse}>Send</button>
-                   
-<button className='cancel' onClick={() => setEditingMessage(null)}>Cancel</button>
-             
-               
+                    <div style={{ textAlign: 'right' }}>
+                        <button className='send' onClick={handleSendEditedResponse}>Send</button>
+                        <button className='cancel' onClick={() => setEditingMessage(null)}>Cancel</button>
                     </div>
-   </div>
+                </div>
             )}
         </div>
     );
